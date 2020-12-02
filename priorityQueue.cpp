@@ -6,7 +6,7 @@
 using namespace std;
 
 // Public
-// Constructor, sets the first index of the array to an empty node
+// Constructor, sets the first index of the array to an empty node and sets the capacity and current size
 PriorityQH::PriorityQH(int n)
 {
     currSize = 0;
@@ -38,6 +38,7 @@ void PriorityQH::push(std::string n, int p)
 // Removes and returns the element with the highest priority
 node PriorityQH::pop()
 {
+    // If the heap is empty, return an empty node
     if (currSize == 0)
     {
         cout << "empty" << endl;

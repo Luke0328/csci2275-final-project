@@ -13,6 +13,7 @@ struct adjVertex{
 struct vertex{
     std::string city;
     bool visited;
+    bool received;
     double distance;
     std::vector<adjVertex> adj;
 };
