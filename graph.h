@@ -24,8 +24,8 @@ class Graph
         ~Graph(){}; 
         void addEdge(std::string v1, std::string v2, int weight);
         void addVertex(std::string name);
+        void generateGraph();
         void printGraph();
-        void assignGroupID();
         vertex *findVertex(std::string name);
         void bfs(std::string name);
         void dijkstras(std::string name);
