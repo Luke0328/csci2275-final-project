@@ -23,7 +23,7 @@ int main(int argc, char *argv[]){
     }
 
     // Create priority queue object
-    PriorityQH pq(10);
+    PriorityQH pq(30);
     // Variables to store data
     string line, n, p;
     int p2;
