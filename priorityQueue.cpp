@@ -6,6 +6,7 @@
 using namespace std;
 
 // Public
+// Constructor, sets the first index of the array to an empty node
 PriorityQH::PriorityQH(int n)
 {
     currSize = 0;
@@ -15,6 +16,7 @@ PriorityQH::PriorityQH(int n)
     maxHeap[0] = empty;
 }
 
+// Adds a node to the heap
 void PriorityQH::push(std::string n, int p)
 {
     // Create node to push
@@ -33,6 +35,7 @@ void PriorityQH::push(std::string n, int p)
     }
 }
 
+// Removes and returns the element with the highest priority
 node PriorityQH::pop()
 {
     if (currSize == 0)
@@ -52,6 +55,7 @@ node PriorityQH::pop()
     return toRet;
 }
 
+// Prints the priority queue
 void PriorityQH::printQH()
 {
     for (int i = 1; i < currSize + 1; i++) {
@@ -60,6 +64,7 @@ void PriorityQH::printQH()
 }
 
 // Private
+// Reorders the heap so that it stays as a maxHeap
 void PriorityQH::maxHeapify(int i)
 {
     int left = 2 * i;
@@ -77,6 +82,7 @@ void PriorityQH::maxHeapify(int i)
     }
 }
 
+// Swap two nodes in the array
 void PriorityQH::swap(int i, int j)
 {
     node tmp = {"", 0};
