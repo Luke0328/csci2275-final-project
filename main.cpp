@@ -22,8 +22,9 @@ int main(int argc, char *argv[]){
         return 0;
     }
 
-    // Create priority queue object
-    PriorityQH pq(30);
+    // Create priority queue object with 20 cities
+    PriorityQH pq(20);
+
     // Variables to store data
     string line, n, p;
     int p2;
@@ -41,6 +42,12 @@ int main(int argc, char *argv[]){
         // Push node to priority queue
         pq.push(n, p2);
     }
+
+    // // Priority queue testing
+    // pq.printQH();
+    // node ret = pq.pop();
+    // cout << ret.city << ret.population << endl;
+    // pq.printQH();
 
     // Close files
     file1.close();

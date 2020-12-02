@@ -74,7 +74,7 @@ void PriorityQH::maxHeapify(int i)
     if ((left <= currSize) && (maxHeap[left].population > maxHeap[i].population)) {
         biggest = left;
     }
-    if ((right <= currSize) && (maxHeap[right].population > maxHeap[i].population)) {
+    if ((right <= currSize) && (maxHeap[right].population > maxHeap[biggest].population)) {
         biggest = right;
     }
     if (biggest != i) {
