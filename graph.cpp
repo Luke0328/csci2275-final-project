@@ -1,5 +1,7 @@
 // Luke Pan, Final Project, Dr. Rhonda Hoenigman
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include "graph.h"
 #include <vector>
 #include <string>
@@ -9,11 +11,23 @@
 using namespace std;
 
 // Public 
+// Constructor, initializes total distance as zero
 Graph::Graph()
 {
     totalDistance = 0;
-}  
+} 
 
+// Adds a vertex to the vector of vertices
+void Graph::addVertex(std::string city)
+{
+    // Create the new vertex
+    vertex *v = new vertex;
+    v->city = city; 
+    // add it to the list of vertices
+    vertices.push_back(*v);
+}
+
+// Adds an edge between two vertices using their adjacency lists
 void Graph::addEdge(std::string v1, std::string v2, int weight)
 {
     vertex *x = findVertex(v1);
@@ -39,13 +53,45 @@ void Graph::addEdge(std::string v1, std::string v2, int weight)
     x->adj.push_back(*adjY);
     y->adj.push_back(*adjX);
 }
-void Graph::addVertex(std::string city)
+
+// Generates the graph from a file
+void Graph::generateGraph(std::string filename)
 {
-    // Create the new vertex
-    vertex *v = new vertex;
-    v->city = city; 
-    // add it to the list of vertices
-    vertices.push_back(*v);
+    // Open file
+    ifstream file(filename);
+
+    // Variables to store data
+    string line, word, selectedCity;
+    double weight;
+
+    // Vector to store city names
+    vector<string> cities;
+    
+    // Read the first line and create a stringstream
+    getline(file, line);
+    stringstream lineStream(line);
+
+    // read in vertices
+    while(getline(lineStream, word, ',')) {
+        addVertex(word);
+        cities.push_back(word);
+    }
+
+    // read in edges
+    while(getline(file, line)) {
+        stringstream lineStream(line);
+        getline(lineStream, word, ',');
+        selectedCity = word;
+
+        for(int i=0; i < cities.size(); i++) {
+            getline(lineStream, word, ',');
+            weight = atof(word.c_str());
+
+            // add edge to graph if not -1
+            if(weight != -1 && weight != 0)
+                addEdge(selectedCity, cities[i], weight);
+        }
+    }
 }
 
 void Graph::printGraph()
@@ -64,7 +110,7 @@ void Graph::printGraph()
 // Private
 vertex *Graph::findVertex(std::string city)
 {
-    // Search for the vertex in vertices, return address if found
+    // Search for the vertex in vertices, return address if found else return null
     for (int i = 0; i < vertices.size(); i++) {
         if (vertices[i].city == city) {
             return &vertices[i];

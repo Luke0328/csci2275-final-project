@@ -14,7 +14,7 @@ struct vertex{
     std::string city;
     bool visited;
     bool received;
-    double distance;
+    double distanceFromStart;
     std::vector<adjVertex> adj;
 };
 
@@ -23,9 +23,9 @@ class Graph
     public:
         Graph(){};  
         ~Graph(){}; 
-        void addEdge(std::string v1, std::string v2, int weight);
         void addVertex(std::string city);
-        void generateGraph();
+        void addEdge(std::string v1, std::string v2, int weight);
+        void generateGraph(std::string filename);
         void printGraph();
         void bfs(std::string city);
         void dijkstras(std::string city);
