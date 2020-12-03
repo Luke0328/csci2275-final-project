@@ -87,7 +87,7 @@ void Graph::generateGraph(std::string filename)
             getline(lineStream, word, ',');
             weight = atof(word.c_str());
 
-            // add edge to graph if not -1
+            // add edge to graph if not -1 or 0
             if(weight != -1 && weight != 0)
                 addEdge(selectedCity, cities[i], weight);
         }
@@ -106,6 +106,12 @@ void Graph::printGraph()
         cout << endl;
     }
 }
+
+double Graph::getTotalDistance()
+{
+    return totalDistance;
+}
+
 
 // Private
 vertex *Graph::findVertex(std::string city)

@@ -30,8 +30,9 @@ class Graph
         void bfs(std::string city);
         void dijkstras(std::string city);
         double getTotalDistance();
-        void distributeByPriority();
+        void distributeByDistance();
         void distributeByJumps();
+        void runNTrucks();
         void reset();
 
     protected:
