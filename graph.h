@@ -24,18 +24,19 @@ class Graph
         Graph(){};  
         ~Graph(){}; 
         void addEdge(std::string v1, std::string v2, int weight);
-        void addVertex(std::string name);
+        void addVertex(std::string city);
         void generateGraph();
         void printGraph();
-        vertex *findVertex(std::string name);
-        void bfs(std::string name);
-        void dijkstras(std::string name);
+        void bfs(std::string city);
+        void dijkstras(std::string city);
         double getTotalDistance();
         void distributeByPriority();
         void distributeByJumps();
+        void reset();
 
     protected:
     private:
+        vertex *findVertex(std::string city);
         std::vector<vertex> vertices;
         double totalDistance;
 };
