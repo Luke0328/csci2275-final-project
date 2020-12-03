@@ -28,7 +28,7 @@ void Graph::addVertex(std::string city)
 }
 
 // Adds an edge between two vertices using their adjacency lists
-void Graph::addEdge(std::string v1, std::string v2, int weight)
+void Graph::addEdge(std::string v1, std::string v2, double weight)
 {
     vertex *x = findVertex(v1);
     vertex *y = findVertex(v2);
@@ -85,7 +85,7 @@ void Graph::generateGraph(std::string filename)
 
         for(int i=0; i < cities.size(); i++) {
             getline(lineStream, word, ',');
-            weight = atof(word.c_str());
+            weight = stod(word.c_str());
 
             // add edge to graph if not -1 or 0
             if(weight != -1 && weight != 0)

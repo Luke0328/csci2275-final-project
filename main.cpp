@@ -6,14 +6,17 @@
 #include <string>
 #include <vector>
 #include "priorityQueue.h"
+#include "graph.h"
 
 using namespace std;
 
 int main(int argc, char *argv[]){
+    // Read in priority queue data
     ifstream file1;
     file1.open(argv[1]);
-    ifstream file2;
-    file2.open(argv[2]);
+    // Read in graph data
+    // ifstream file2;
+    // file2.open(argv[2]);
 
     // Throw error if file could not be opened
     if (!file1)
@@ -43,6 +46,14 @@ int main(int argc, char *argv[]){
         pq.push(n, p2);
     }
 
+    // Create graph object
+    Graph g;
+
+    // Generate graph from file name
+    g.generateGraph(argv[2]);
+
+    g.printGraph();
+
     // // Priority queue testing
     // pq.printQH();
     // node ret = pq.pop();
@@ -51,7 +62,7 @@ int main(int argc, char *argv[]){
 
     // Close files
     file1.close();
-    file2.close();
+    // file2.close();
 
     return 0;
 }

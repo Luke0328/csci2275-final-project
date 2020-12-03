@@ -21,10 +21,10 @@ struct vertex{
 class Graph
 {
     public:
-        Graph(){};  
+        Graph();  
         ~Graph(){}; 
         void addVertex(std::string city);
-        void addEdge(std::string v1, std::string v2, int weight);
+        void addEdge(std::string v1, std::string v2, double weight);
         void generateGraph(std::string filename);
         void printGraph();
         void bfs(std::string city);
