@@ -5,7 +5,6 @@
 #include "graph.h"
 #include <vector>
 #include <string>
-#include <stack>
 #include <queue>
 
 using namespace std;
@@ -107,11 +106,62 @@ void Graph::printGraph()
     }
 }
 
+// Breadth-First Search
+vertex *Graph::bfs(std::string startC, std::string endC)
+{
+    // Find the starting vertex and set its data
+    vertex *start = findVertex(startC);
+    start->visited = true; start->dist = 0;
+
+    // Create vertex pointer queue and enqueue the starting vertex
+    queue <vertex*> queue; 
+    queue.push(start); 
+
+    while (!queue.empty()) {
+        // Dequeue
+        vertex *tmp = queue.front();
+        queue.pop();
+        for (int i = 0; i < tmp->adj.size(); i++) {
+
+            // If the vertex has not been visited
+            if (!(tmp->adj[i].v->visited)) {
+                // Set distance
+                tmp->adj[i].v->dist = tmp->dist + 1;
+
+                if (tmp->adj[i].v->city == endC) {
+                    totalJumps += tmp->adj[i].v->dist;
+                    // Return a pointer to the end city
+                    return tmp->adj[i].v;
+                }
+                else {
+                    tmp->adj[i].v->visited = true;
+                    queue.push(tmp->adj[i].v);
+                }
+            }
+        }
+    }
+    // Unvisit all
+    for (int i = 0; i < vertices.size(); i++) {
+        vertices[i].visited = false;
+    }
+    cout << "failed" <<endl;
+    return nullptr;
+}
+
+// vertex *Graph::dijkstras(std::string startC, std::string endC)
+// {
+
+// }
+
 double Graph::getTotalDistance()
 {
     return totalDistance;
 }
 
+int Graph::getTotalJumps()
+{
+    return totalJumps;
+}
 
 // Private
 vertex *Graph::findVertex(std::string city)
