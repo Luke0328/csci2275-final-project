@@ -126,7 +126,6 @@ vertex *Graph::bfs(std::string startC, std::string endC)
             
             // If the vertex has not been visited
             if (!(tmp->adj[i].v->visited)) {
-                cout << tmp->adj[i].v->city << endl;
                 // Set distance
                 tmp->adj[i].v->dist = tmp->dist + 1;
 

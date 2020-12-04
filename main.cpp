@@ -52,10 +52,14 @@ int main(int argc, char *argv[]){
     // Generate graph from file name
     g.generateGraph(argv[2]);
 
-    g.printGraph();
+    // g.printGraph();
 
-    // vertex *x = g.bfs("Denver", "Fort Collins");
+    // BFS testing
+    // vertex *x = g.bfs("Pueblo", "Grand Junction");
     // cout << x->city << x->dist << endl;
+    // x = g.bfs("Grand Junction", "Fort Collins");
+    // cout << x->city << x->dist << endl;
+    // cout << g.getTotalJumps() << endl;
 
     // // Priority queue testing
     // pq.printQH();
