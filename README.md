@@ -6,4 +6,5 @@ In this project I utilize two data structures that we learned about in class: a 
 Prioritizing the most populous cities first, the program visits cities one by one until vaccines are distributed to all cities. Dijkstra's algorithm is used to calculate the shortest route between cities by distance. Alternatively, Breadth-first search is used to calculate the route with the least number of jumps. Finally, the user can choose to run the simulation with multiple shipping trucks. 
 
 Priority queue data from: https://www.colorado-demographics.com/cities_by_population
-Graph data from Google Maps
+
+Graph data from Google Maps: https://www.google.com/maps
