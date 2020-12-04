@@ -54,8 +54,8 @@ int main(int argc, char *argv[]){
 
     g.printGraph();
 
-    vertex *x = g.bfs("Denver", "Arvada");
-    cout << x->city << x->dist << endl;
+    // vertex *x = g.bfs("Denver", "Fort Collins");
+    // cout << x->city << x->dist << endl;
 
     // // Priority queue testing
     // pq.printQH();

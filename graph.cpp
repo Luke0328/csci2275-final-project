@@ -10,10 +10,11 @@
 using namespace std;
 
 // Public 
-// Constructor, initializes total distance as zero
+// Constructor, initializes total distance/jumps as zero
 Graph::Graph()
 {
     totalDistance = 0;
+    totalJumps = 0;
 } 
 
 // Adds a vertex to the vector of vertices
@@ -21,7 +22,7 @@ void Graph::addVertex(std::string city)
 {
     // Create the new vertex
     vertex *v = new vertex;
-    v->city = city; 
+    v->city = city; v->visited = false; v->received = false; v->dist = 0;
     // add it to the list of vertices
     vertices.push_back(*v);
 }
@@ -87,7 +88,7 @@ void Graph::generateGraph(std::string filename)
             weight = stod(word.c_str());
 
             // add edge to graph if not -1 or 0
-            if(weight != -1 && weight != 0)
+            if (weight != -1 && weight != 0)
                 addEdge(selectedCity, cities[i], weight);
         }
     }
@@ -122,9 +123,10 @@ vertex *Graph::bfs(std::string startC, std::string endC)
         vertex *tmp = queue.front();
         queue.pop();
         for (int i = 0; i < tmp->adj.size(); i++) {
-
+            
             // If the vertex has not been visited
             if (!(tmp->adj[i].v->visited)) {
+                cout << tmp->adj[i].v->city << endl;
                 // Set distance
                 tmp->adj[i].v->dist = tmp->dist + 1;
 
