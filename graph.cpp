@@ -98,6 +98,9 @@ void Graph::generateGraph(std::string filename)
                 addEdge(selectedCity, cities[i], weight);
         }
     }
+
+    // Close file
+    file.close();
 }
 
 void Graph::printGraph()

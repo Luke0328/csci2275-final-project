@@ -1,6 +1,8 @@
 // Luke Pan, Final Project, Dr. Rhonda Hoenigman
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include "priorityQueue.h"
 
 using namespace std;
@@ -55,6 +57,42 @@ node PriorityQH::pop()
     maxHeapify(1);
     return toRet;
 }
+
+// Generates the priority queue and reads in data from a file
+void PriorityQH::generatePriorityQueue(std::string filename)
+{
+    // Read in priority queue data
+    ifstream file(filename);
+
+    // Throw error if file could not be opened
+    if (!file)
+    {
+        cout << "Error: Could not open priority queue data for reading" << endl;
+        return;
+    }
+
+    // Variables to store data
+    string line, n, p;
+    int p2;
+
+    // Read in all the data from file1 and store it in the priority queue
+    while(getline(file, line)) {
+        // save info from file
+        stringstream ss(line);
+        getline(ss, n, ',');
+        getline(ss, p);
+
+        // Convert string to integer
+        p2 = stoi(p);
+
+        // Push node to priority queue
+        push(n, p2);
+    }
+
+    // Close file
+    file.close();
+}
+
 
 // Prints the priority queue
 void PriorityQH::printQH()

@@ -13,6 +13,7 @@ public:
     PriorityQH(int n);
     void push(std::string n, int p);
     node pop();
+    void generatePriorityQueue(std::string filename);
     void printQH();
 protected:
 private:
