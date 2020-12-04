@@ -2,10 +2,11 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "graph.h"
+#include "float.h"
 #include <vector>
 #include <string>
 #include <queue>
+#include "graph.h"
 
 using namespace std;
 
@@ -60,6 +61,11 @@ void Graph::generateGraph(std::string filename)
     // Open file
     ifstream file(filename);
 
+    if (!file)
+    {
+        cout << "Error: Could not open graph data for reading" << endl;
+        return;
+    }
     // Variables to store data
     string line, word, selectedCity;
     double weight;
@@ -107,7 +113,7 @@ void Graph::printGraph()
     }
 }
 
-// Breadth-First Search
+// Breadth-First Search for the shortest path between two vertices in an unweighted graph
 vertex *Graph::bfs(std::string startC, std::string endC)
 {
     // Find the starting vertex and set its data
@@ -142,29 +148,78 @@ vertex *Graph::bfs(std::string startC, std::string endC)
         }
     }
     // Unvisit all
-    for (int i = 0; i < vertices.size(); i++) {
-        vertices[i].visited = false;
-    }
-    cout << "failed" <<endl;
+    unvisit();
+    cout << "City not found" <<endl;
     return nullptr;
 }
 
-// vertex *Graph::dijkstras(std::string startC, std::string endC)
-// {
+// Dijkstras Aglorithm for the shortest path between two vertices in a weighted graph
+vertex *Graph::dijkstras(std::string startC, std::string endC)
+{
+    // Find the starting and ending vertices
+    vertex *start = findVertex(startC);
+    vertex *end = findVertex(endC);
+    start->visited = true; start->dist = 0;
 
-// }
+    // Create vertex pointer vector and add the starting vertex
+    vector<vertex*> solved;
+    solved.push_back(start); 
 
+    while (!(end->visited)) {
+        // Set min dist to the maximum double
+        double minDist = DBL_MAX;
+        vertex *curr = nullptr;
+
+        for (int i = 0; i < solved.size(); i++) {
+            vertex *tmp = solved[i];
+
+            // Loop through adjacent vertices
+            for (int j = 0; j < tmp->adj.size(); j++) {
+
+                if (!(tmp->adj[j].v->visited)) {
+                    // Create variable for distance
+                    double currDist = tmp->dist + tmp->adj[j].weight;
+                    // If distance is less than the min distance
+                    if (currDist < minDist) {
+                        curr = tmp->adj[j].v;
+                        minDist = currDist;
+                    }
+                }
+            }
+        }
+        // Set the correct distance
+        curr->dist = minDist;
+        curr->visited = true;
+        solved.push_back(curr);
+    }
+    // Unvisit all
+    unvisit();
+    totalDistance += end->dist;
+    return end;
+}
+
+// Get the total distance traveled
 double Graph::getTotalDistance()
 {
     return totalDistance;
 }
 
+// Get the total number of jumps performed
 int Graph::getTotalJumps()
 {
     return totalJumps;
 }
 
+// Reset to original state
+void Graph::reset() 
+{
+    totalDistance = 0;
+    totalJumps = 0;
+    unvisit();
+}
+
 // Private
+// Returns a pointer to the vertex of a desired city
 vertex *Graph::findVertex(std::string city)
 {
     // Search for the vertex in vertices, return address if found else return null
@@ -174,4 +229,12 @@ vertex *Graph::findVertex(std::string city)
         }
     }
     return NULL;
+}
+
+// Sets the visited variable to false for all vertices
+void Graph::unvisit() 
+{
+    for (int i = 0; i < vertices.size(); i++) {
+        vertices[i].visited = false;
+    }
 }

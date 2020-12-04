@@ -14,14 +14,11 @@ int main(int argc, char *argv[]){
     // Read in priority queue data
     ifstream file1;
     file1.open(argv[1]);
-    // Read in graph data
-    // ifstream file2;
-    // file2.open(argv[2]);
 
     // Throw error if file could not be opened
     if (!file1)
     {
-        cout << "Error: Could not open file for reading" << endl;
+        cout << "Error: Could not open priority queue data for reading" << endl;
         return 0;
     }
 
@@ -52,7 +49,7 @@ int main(int argc, char *argv[]){
     // Generate graph from file name
     g.generateGraph(argv[2]);
 
-    // g.printGraph();
+    g.printGraph();
 
     // BFS testing
     // vertex *x = g.bfs("Pueblo", "Grand Junction");
@@ -60,6 +57,13 @@ int main(int argc, char *argv[]){
     // x = g.bfs("Grand Junction", "Fort Collins");
     // cout << x->city << x->dist << endl;
     // cout << g.getTotalJumps() << endl;
+
+    // Dijkstras testing
+    // vertex *y = g.dijkstras("Denver", "Arvada");
+    // cout << y->city << y->dist << endl;
+    // y = g.dijkstras("Arvada", "Fort Collins");
+    // cout << y->city << y->dist << endl;
+    // cout << g.getTotalDistance() << endl;
 
     // // Priority queue testing
     // pq.printQH();

@@ -33,12 +33,14 @@ class Graph
         int getTotalJumps();
         void distributeByDistance();
         void distributeByJumps();
-        void runNTrucks();
+        void runNTrucksByDistance();
+        void runNTrucksByJumps();
         void reset();
 
     protected:
     private:
         vertex *findVertex(std::string city);
+        void unvisit();
         std::vector<vertex> vertices;
         double totalDistance;
         int totalJumps;
