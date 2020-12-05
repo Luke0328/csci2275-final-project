@@ -24,7 +24,7 @@ void Graph::addVertex(std::string city)
 {
     // Create the new vertex
     vertex *v = new vertex;
-    v->city = city; v->visited = false; v->received = false; v->dist = 0;
+    v->city = city; v->visited = false; v->dist = 0;
     // add it to the list of vertices
     vertices.push_back(*v);
 }

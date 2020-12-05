@@ -31,7 +31,7 @@ int main(int argc, char *argv[]){
     cout << endl;
 
     // g.runNTrucksByJumps(&pq, 20);
-    g.runNTrucksByDistance(&pq, 20);
+    // g.runNTrucksByDistance(&pq, 20);
 
     // BFS testing
     // vertex *x = g.bfs("Pueblo", "Grand Junction");
