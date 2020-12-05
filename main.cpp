@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
     // Generate graph from file name
     pq.generatePriorityQueue(argv[1]);
 
-    pq.printQH();
+    // pq.printQH();
 
     // Create graph object
     Graph g;
@@ -26,11 +26,12 @@ int main(int argc, char *argv[]){
     // Generate graph from file name
     g.generateGraph(argv[2]);
 
-    g.printGraph();
+    // g.printGraph();
 
     cout << endl;
 
-    g.runNTrucksByJumps(&pq, 20);
+    // g.runNTrucksByJumps(&pq, 20);
+    g.runNTrucksByDistance(&pq, 20);
 
     // BFS testing
     // vertex *x = g.bfs("Pueblo", "Grand Junction");

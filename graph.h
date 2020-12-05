@@ -17,7 +17,6 @@ struct adjVertex{
 struct vertex{
     std::string city;
     bool visited;
-    bool received;
     double dist;
     std::vector<adjVertex> adj;
 };
@@ -41,7 +40,7 @@ class Graph
         double getTotalDistance();
         int getTotalJumps();
         void distributeByJumps(PriorityQH *pq, truck *t);
-        void distributeByDistance(PriorityQH pq);
+        void distributeByDistance(PriorityQH *pq, truck *t);
         void runNTrucksByDistance(PriorityQH *pq, int n);
         void runNTrucksByJumps(PriorityQH *pq, int n);
         void reset();
