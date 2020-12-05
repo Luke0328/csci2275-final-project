@@ -96,6 +96,9 @@ void PriorityQH::generatePriorityQueue(std::string filename)
 // Prints the priority queue
 void PriorityQH::printQH()
 {
+    if (isEmpty()) {
+        cout << "Priority queue is empty" << endl;
+    }
     for (int i = 1; i < currSize + 1; i++) {
         cout << maxHeap[i].city << "," << maxHeap[i].population << endl;
     }
