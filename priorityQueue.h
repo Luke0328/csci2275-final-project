@@ -1,5 +1,8 @@
 // Luke Pan, Final Project, Dr. Rhonda Hoenigman
 
+#ifndef PRIORITYQUEUE_H
+#define PRIORITYQUEUE_H
+
 #include <iostream>
 
 struct node{
@@ -15,6 +18,7 @@ public:
     node pop();
     void generatePriorityQueue(std::string filename);
     void printQH();
+    bool isEmpty();
 protected:
 private:
     node *maxHeap;
@@ -23,3 +27,5 @@ private:
     void maxHeapify(int i);
     void swap(int i, int j);
 };
+
+#endif

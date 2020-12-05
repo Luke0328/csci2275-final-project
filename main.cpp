@@ -28,6 +28,10 @@ int main(int argc, char *argv[]){
 
     g.printGraph();
 
+    cout << endl;
+
+    g.runNTrucksByJumps(&pq, 20);
+
     // BFS testing
     // vertex *x = g.bfs("Pueblo", "Grand Junction");
     // cout << x->city << x->dist << endl;

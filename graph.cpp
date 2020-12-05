@@ -7,6 +7,7 @@
 #include <string>
 #include <queue>
 #include "graph.h"
+#include "priorityQueue.h"
 
 using namespace std;
 
@@ -152,7 +153,7 @@ vertex *Graph::bfs(std::string startC, std::string endC)
     }
     // Unvisit all
     unvisit();
-    cout << "City not found" <<endl;
+    // cout << "City not found" <<endl;
     return nullptr;
 }
 
@@ -200,6 +201,59 @@ vertex *Graph::dijkstras(std::string startC, std::string endC)
     totalDistance += end->dist;
     return end;
 }
+
+// Distribute by route with shortest number of jumps
+void Graph::distributeByJumps(PriorityQH *pq, truck *t)
+{
+    // Truck passed in by reference
+    // Pop a node for the truck to travel to
+    node endNode = pq->pop();
+
+    // Run BFS from the city that the truck is at to the endNode city
+    bfs(t->currCity, endNode.city);
+
+    // Print where the shipment traveled to and from
+    cout << "Truck #" << t->num << " traveled from " << t->currCity << " to " << endNode.city << endl;
+    // Set truck city to end city
+    t->currCity = endNode.city;
+    
+}
+
+// Simulate multiple shipments, distribute by least amount of jumps
+void Graph::runNTrucksByJumps(PriorityQH *pq, int n)
+{
+    // Return if priority queue is empty
+    if (pq->isEmpty()) {
+        cout << "PQ empty" << endl;
+        return;
+    }
+
+    // Pop first node from priority queue
+    node startNode = pq->pop();
+
+    // Make a vector of truck structs numbered up to n and all beginning at the start location
+    vector<truck> trucks;
+    for (int i = 0; i < n; i++) {
+        truck t = {startNode.city, i + 1};
+        trucks.push_back(t);
+    }
+
+    // Distribute until the priority queue is empty
+    int i = 0;
+    while (!(pq->isEmpty())) {
+        // Pass the address of the truck into the function
+        distributeByJumps(pq, &trucks.at(i));
+        i = (i + 1) % n;
+    }
+
+    // Print some final info
+    cout << "All shipments delivered" << endl;
+    for (int j = 0; j < trucks.size(); j++) {
+        cout << "Truck #" << trucks.at(j).num << " ended in " << trucks.at(j).currCity << endl;
+    }
+    cout << "A total of " << totalJumps << " jumps were made" << endl;
+}
+
 
 // Get the total distance traveled
 double Graph::getTotalDistance()

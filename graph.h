@@ -1,7 +1,11 @@
 // Luke Pan, Final Project, Dr. Rhonda Hoenigman
 
+#ifndef GRAPH_H
+#define GRAPH_H
+
 #include<iostream>
 #include<vector>
+#include "priorityQueue.h"
 
 struct vertex;
 
@@ -18,6 +22,11 @@ struct vertex{
     std::vector<adjVertex> adj;
 };
 
+struct truck {
+    std::string currCity;
+    int num;
+};
+
 class Graph
 {
     public:
@@ -31,10 +40,10 @@ class Graph
         vertex *dijkstras(std::string startC, std::string endC);
         double getTotalDistance();
         int getTotalJumps();
-        void distributeByDistance();
-        void distributeByJumps();
-        void runNTrucksByDistance();
-        void runNTrucksByJumps();
+        void distributeByJumps(PriorityQH *pq, truck *t);
+        void distributeByDistance(PriorityQH pq);
+        void runNTrucksByDistance(PriorityQH *pq, int n);
+        void runNTrucksByJumps(PriorityQH *pq, int n);
         void reset();
 
     protected:
@@ -45,3 +54,5 @@ class Graph
         double totalDistance;
         int totalJumps;
 };
+
+#endif
