@@ -10,12 +10,12 @@
 
 using namespace std;
 
+// ./"executableName" priorityQueueData graphData
 int main(int argc, char *argv[]){
-
     // Create priority queue object with a capacity of 20
     PriorityQH pq(20);
 
-    // Generate graph from file name
+    // Generate priority queue from file name
     pq.generatePriorityQueue(argv[1]);
 
     // Create graph object
