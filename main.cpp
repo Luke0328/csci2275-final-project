@@ -28,7 +28,7 @@ int main(int argc, char *argv[]){
 					"1. Refill priority queue from file\n"
 					"2. Run simulation by jumps\n"
                     "3. Run simulation by distance\n"
-                    "4. Least amount of jumps between cities\n"
+                    "4. Least number of jumps between cities\n"
                     "5. Least distance between cities\n"
                     "6. Get total jumps\n"
                     "7. Get total distance\n"

@@ -10,7 +10,7 @@ Graph data from Google Maps: https://www.google.com/maps.
 
 To download the code, click the green "Code" button on Github. Then click "Download ZIP". Finally, unzip the code. To view the code open the folder with your text editor of choice.  
 To run the program, first compile it by running "g++ -std=c++11 priorityQueue.cpp graph.cpp main.cpp -o run" in your terminal. Then enter "./run pqData.csv graphData.csv". The first argument should be the priority queue data and the second argument should be the graph data.  
-Then select the desired option from the terminal menu. After running the simulation, refill the priority queue from the file. The simulation should also be reset after using the Least Jumps and Least Distance options. 
+Then select the desired option from the terminal menu. After running the simulation, refill the priority queue from the file and reset the simulation to run it again. 
 
 No additional dependencies or system requirements.  
 
