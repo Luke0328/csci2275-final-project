@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "math.h"
 #include "priorityQueue.h"
 
 using namespace std;
